@@ -1,9 +1,22 @@
 const http = require("http");
+const fs = require('fs');
 
 const handler = (request, response) => {
-    response.writeHead(200, {"Content-Type": "text/html"});
-    response.write(message);
-    response.end();
+    const endpoint = request.url;
+    const method = request.method;
+    console.log({endpoint, method});
+    if (endpoint === '/'){
+        response.writeHead(200, {"Content-Type": "text/html"});
+    fs.readFile(__dirname + '/..' + '/public/index.html', (error,file) => {
+        if (error) {
+            console.log(error);
+            return;
+        }
+        response.end(file);
+    })
+}
+   
+
 }
 
 const server = http.createServer(handler);
