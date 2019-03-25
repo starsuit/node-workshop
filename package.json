@@ -1,0 +1,19 @@
+{
+  "name": "node-workshop",
+  "version": "1.0.0",
+  "description": "first node project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jokosanyang/node-workshop.git"
+  },
+  "author": "@jokosanyang, @starsuit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jokosanyang/node-workshop/issues"
+  },
+  "homepage": "https://github.com/jokosanyang/node-workshop#readme"
+}
