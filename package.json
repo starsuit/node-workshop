@@ -4,7 +4,8 @@
   "description": "first node project",
   "main": "./src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/jokosanyang/node-workshop/issues"
   },
-  "homepage": "https://github.com/jokosanyang/node-workshop#readme"
+  "homepage": "https://github.com/jokosanyang/node-workshop#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
 }
