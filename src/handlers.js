@@ -1,7 +1,6 @@
 const http = require("http");
 const fs = require("fs");
 const querystring = require("querystring");
-const message = "I am so happy to be part of FAC16!";
 
 const handler = (request, response) => {
   const endpoint = request.url;
@@ -25,7 +24,7 @@ const handler = (request, response) => {
       }
       response.end(file);
     });
-  } else if (endpoint === "/create-post") {
+  } else if (endpoint === "/create/post") {
     response.writeHead(301, { Location: "/" });
     fs.readFile(__dirname + "/.." + "/public/index.html", (error, file) => {
       if (error) {
@@ -40,7 +39,8 @@ const handler = (request, response) => {
       html: "text/html",
       css: "text/css",
       js: "application/javascript",
-      jpg: "image/jpeg"
+      jpg: "image/jpeg",
+      png: "image/png"
     };
     fs.readFile(__dirname + "/.." + endpoint, (error, file) => {
       if (error) {
