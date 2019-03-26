@@ -11,7 +11,45 @@ const handler = (request, response) => {
     });
     request.on("end", () => {
       const convertedData = querystring.parse(allTheData);
-      console.log(convertedData);
+      // console.log(convertedData);
+
+      fs.readFile(
+        __dirname + "/.." + "/src/posts.json",
+        "utf8",
+        (error, data) => {
+          if (error) {
+            console.log(error);
+            return;
+          }
+          const originalObj = JSON.parse(data);
+          const timestamp = Date.now();
+          originalObj[timestamp] = convertedData.post;
+          const newData = JSON.stringify(originalObj);
+          console.log({ originalObj, newData });
+          fs.writeFile(
+            __dirname + "/.." + "/src/posts.json",
+            newData,
+            error => {
+              if (error) {
+                console.log(error);
+                return;
+              }
+            }
+          );
+        }
+      );
+
+      // const addPost = (location, content) => {
+      //   fs.readFile(__dirname + "/.." + location, (error, data) => {
+      //     if (error) {
+      //       console.log(error);
+      //       return;
+      //     }
+      //     console.log(data);
+      //   });
+      // };
+
+      // addPost("/src/posts.json", convertedData);
       response.end();
     });
   }
@@ -26,7 +64,9 @@ const handler = (request, response) => {
     });
   } else if (endpoint === "/create/post") {
     response.writeHead(301, { Location: "/" });
-    fs.readFile(__dirname + "/.." + "/public/index.html", (error, file) => {
+  } else if (endpoint === "/posts") {
+    response.writeHead(200, { "Content-Type": "application/json" });
+    fs.readFile(__dirname + "/.." + "/src/posts.json", (error, file) => {
       if (error) {
         console.log(error);
         return;
